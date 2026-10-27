@@ -1,0 +1,182 @@
+# ==============================================================================
+# CardioPulmo-HMS - Comprehensive .gitignore
+# Specialized for Python (FastAPI/ML), Node.js (React/TypeScript), and Healthcare Data
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Environment Variables, Secrets & Credentials (MANDATORY)
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+credentials.json
+client_secret*.json
+id_rsa
+id_ecdsa
+id_ed25519
+
+# ------------------------------------------------------------------------------
+# 2. Healthcare Datasets & Raw Data (Data Privacy & Storage Limits)
+# ------------------------------------------------------------------------------
+# Never commit real or large clinical datasets, raw imaging archives, or tarballs
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/synthetic/*
+!data/synthetic/.gitkeep
+data/quarantine/*
+!data/quarantine/.gitkeep
+
+# Dataset file formats
+*.csv.gz
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.dcm
+*.dicom
+*.nii
+*.nii.gz
+
+# ------------------------------------------------------------------------------
+# 3. Large Machine Learning Models, Checkpoints & Weights
+# ------------------------------------------------------------------------------
+ml/models/*
+!ml/models/.gitkeep
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.pb
+*.tflite
+*.safetensors
+*.ckpt
+checkpoints/
+
+# ------------------------------------------------------------------------------
+# 4. Python Build, Cache & Virtual Environments
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+.venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+coverage.xml
+*.cover
+nosetests.xml
+coverage/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*.converted.ipynb
+
+# ------------------------------------------------------------------------------
+# 5. Node.js / Frontend (React + Vite + TypeScript)
+# ------------------------------------------------------------------------------
+node_modules/
+frontend/node_modules/
+.npm
+.eslintcache
+.stylelintcache
+frontend/dist/
+frontend/build/
+.vite/
+*.tsbuildinfo
+
+# ------------------------------------------------------------------------------
+# 6. Database, SQLite & Local Storage
+# ------------------------------------------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+postgres-data/
+
+# ------------------------------------------------------------------------------
+# 7. Operating System & IDE Artifacts
+# ------------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors & IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------------------------
+# 8. Logs & Temporary Files
+# ------------------------------------------------------------------------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+tmp/
+temp/

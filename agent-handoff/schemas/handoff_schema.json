@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CardioPulmoHandoffContract",
+  "description": "Cross-Specialty Provenance-Linked AI Referral Handoff Protocol between Cardiology and Pulmonology",
+  "type": "object",
+  "properties": {
+    "handoff_id": {
+      "type": "string",
+      "description": "Unique identifier for this handoff transaction (UUIDv4)"
+    },
+    "correlation_id": {
+      "type": "string",
+      "description": "Trace correlation ID for tracking across distributed microservices and audit logs"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING_CLINICIAN_REVIEW",
+        "ACCEPTED",
+        "INFO_REQUESTED",
+        "REJECTED",
+        "CLOSED_WITH_OUTCOME"
+      ],
+      "description": "Current state machine status of the referral"
+    },
+    "source_specialty": {
+      "type": "string",
+      "enum": ["CARDIOLOGY", "PULMONOLOGY"],
+      "description": "Referring medical specialty"
+    },
+    "destination_specialty": {
+      "type": "string",
+      "enum": ["CARDIOLOGY", "PULMONOLOGY"],
+      "description": "Receiving medical specialty"
+    },
+    "authorized_sender_id": {
+      "type": "string",
+      "description": "Authenticated user ID of the referring clinician"
+    },
+    "sender_name": {
+      "type": "string",
+      "description": "Full name and credential title of the referring clinician"
+    },
+    "patient_id": {
+      "type": "string",
+      "description": "Synthetic or scoped patient identifier"
+    },
+    "encounter_id": {
+      "type": "string",
+      "description": "Identifier of the active clinical encounter"
+    },
+    "referral_reason": {
+      "type": "string",
+      "description": "Clinical justification for cross-specialty consultation"
+    },
+    "minimized_context": {
+      "type": "object",
+      "description": "Minimum-necessary clinical context pertinent to the referral",
+      "properties": {
+        "vitals": {
+          "type": "object",
+          "properties": {
+            "bp": { "type": "string" },
+            "hr": { "type": "number" },
+            "spo2": { "type": "string" },
+            "rr": { "type": "number" },
+            "timestamp": { "type": "string", "format": "date-time" }
+          },
+          "required": ["bp", "hr", "spo2", "rr", "timestamp"]
+        },
+        "verified_labs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "loinc": { "type": "string" },
+              "test": { "type": "string" },
+              "value": { "type": ["number", "string"] },
+              "unit": { "type": "string" },
+              "flag": { "type": "string" }
+            },
+            "required": ["loinc", "test", "value", "unit", "flag"]
+          }
+        },
+        "cxr_cv_screening": {
+          "type": "object",
+          "properties": {
+            "study_id": { "type": "string" },
+            "findings": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "prob": { "type": "number", "minimum": 0, "maximum": 1 }
+                },
+                "required": ["label", "prob"]
+              }
+            },
+            "gradcam_ref": { "type": "string" }
+          },
+          "required": ["study_id", "findings"]
+        }
+      },
+      "required": ["vitals", "verified_labs"]
+    },
+    "missingness_and_uncertainty": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Explicit declarations of missing or pending diagnostic evidence"
+    },
+    "provenance_sha256": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "description": "SHA-256 cryptographic hash of the canonical serialized clinical context"
+    },
+    "untrusted_delimiters_verified": {
+      "type": "boolean",
+      "description": "Flag indicating that free-text notes were sanitized against prompt injection"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp of the referral"
+    }
+  },
+  "required": [
+    "handoff_id",
+    "correlation_id",
+    "status",
+    "source_specialty",
+    "destination_specialty",
+    "authorized_sender_id",
+    "patient_id",
+    "encounter_id",
+    "referral_reason",
+    "minimized_context",
+    "provenance_sha256",
+    "timestamp"
+  ]
+}

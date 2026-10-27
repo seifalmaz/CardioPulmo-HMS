@@ -1,0 +1,2 @@
+# Preserves data/synthetic directory structure for Synthea EHR patient records.
+# Actual data files are ignored by .gitignore.

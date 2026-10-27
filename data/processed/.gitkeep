@@ -1,0 +1,2 @@
+# Preserves data/processed directory structure for Silver validated datasets.
+# Actual data files are ignored by .gitignore.

@@ -1,0 +1,2 @@
+# Preserves ml/models directory structure.
+# Model binaries (*.pth, *.pt, *.joblib, *.onnx) are ignored by .gitignore.

@@ -1,0 +1,2 @@
+# Preserves data/raw directory structure for Bronze raw dataset ingestion.
+# Actual data files are ignored by .gitignore.

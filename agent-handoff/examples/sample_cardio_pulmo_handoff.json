@@ -1,0 +1,58 @@
+{
+  "handoff_id": "ho-9042-uuid",
+  "correlation_id": "corr-771a",
+  "status": "ACCEPTED",
+  "source_specialty": "CARDIOLOGY",
+  "destination_specialty": "PULMONOLOGY",
+  "authorized_sender_id": "doc-cardio-104",
+  "sender_name": "Dr. Sarah Lin, MD (Cardiology Attending)",
+  "patient_id": "pat-syn-8821",
+  "encounter_id": "enc-5502",
+  "referral_reason": "Evaluate bilateral pleural effusion and persistent resting hypoxia (SpO2 91%) noted during acute decompensated heart failure workup.",
+  "minimized_context": {
+    "vitals": {
+      "bp": "146/92 mmHg",
+      "hr": 98,
+      "spo2": "91%",
+      "rr": 24,
+      "timestamp": "2026-10-21T09:15:00Z"
+    },
+    "verified_labs": [
+      {
+        "loinc": "33762-6",
+        "test": "NT-proBNP",
+        "value": 1450,
+        "unit": "pg/mL",
+        "flag": "HIGH"
+      },
+      {
+        "loinc": "42757-5",
+        "test": "Troponin I, High Sensitivity",
+        "value": 0.048,
+        "unit": "ng/mL",
+        "flag": "HIGH"
+      }
+    ],
+    "cxr_cv_screening": {
+      "study_id": "cxr-991",
+      "findings": [
+        {
+          "label": "Effusion",
+          "prob": 0.86
+        },
+        {
+          "label": "Cardiomegaly",
+          "prob": 0.79
+        }
+      ],
+      "gradcam_ref": "signed://cxr-991-cam.png"
+    }
+  },
+  "missingness_and_uncertainty": [
+    "Arterial Blood Gas (ABG) pending lab verification",
+    "Prior spirometry unavailable"
+  ],
+  "provenance_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "untrusted_delimiters_verified": true,
+  "timestamp": "2026-10-21T09:30:14Z"
+}
